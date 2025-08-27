@@ -1,0 +1,12 @@
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: php://stderr
+            level: critical  # Ne montrer que les erreurs critiques
+            channels: ["!event", "!doctrine", "!console", "!cache"]
+        # Complètement désactiver les logs non critiques pendant les tests
+        null_handler:
+            type: "null"
+            level: debug
+            channels: ["event", "doctrine", "console", "cache", "request"]
